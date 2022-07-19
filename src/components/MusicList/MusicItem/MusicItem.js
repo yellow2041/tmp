@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
+import {BrowserRouter, Link, Route, Switch, useLocation, useNavigate} from 'react-router-dom';
 
 const Item = styled.li`
     display: flex;
@@ -10,6 +11,13 @@ const Item = styled.li`
     padding: 10px 0;
     vertical-align: middle;
     table-layout: fixed;
+`
+const Head = styled.div`
+    width: 30%;
+    display: flex;
+`
+const Title = styled.div`
+    cursor: pointer;
 `
 const Cover = styled.div`
     white-space: normal;
@@ -33,15 +41,35 @@ const RankArea = styled.div`
     line-height: 19px;
     color: darkblue;
 `
+const InfoArea = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-content: space-between;
+    width: 70%;
+`
 
 export default function MusicItem({id, rank, title, singer, imageUrl}) {
-    console.log(rank);
+    const navigate = useNavigate();
+    const {state} = useLocation();
+    
     return (
         <Item>
-            <RankArea>{rank}</RankArea>
-            <Cover>
-                <CoverImg imageUrl={imageUrl}/>
-            </Cover>
+            <Head>
+                <RankArea>{rank}</RankArea>
+                <Cover>
+                    <CoverImg imageUrl={imageUrl}/>
+                </Cover>
+            </Head>
+            <InfoArea>
+                <Title>
+                    <Link to={`/detail/${id}`}>
+                    {title}
+                    </Link>
+                </Title>
+                <div>
+                    {singer}
+                </div>
+            </InfoArea>
         </Item>
     )
 }

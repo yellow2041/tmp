@@ -27,14 +27,14 @@ export default function MusicList({isDomestic}){
                 .map(music => {
                         const {id, rank, title, singer, imageUrl} = music;
                         return (
-                            <MusicItem key={music.id} rank={rank} imageUrl={imageUrl}/>
+                            <MusicItem key={id} id={id} rank={rank} imageUrl={imageUrl} title={title} singer={singer}/>
                         )
                     }
                 ):overseasMusicList
                 .map(music => {
                         const {id, rank, title, singer, imageUrl} = music;
                         return (
-                            <MusicItem key={music.id} rank={rank} imageUrl={imageUrl}/>
+                            <MusicItem key={id} id={id} rank={rank} imageUrl={imageUrl} title={title} singer={singer}/>
                         )
                     }
                 )
